@@ -1,5 +1,22 @@
+
+name: pyton_pr
 on:
  pull_request:
+
+
+on:
+  workflow_dispatch:
+    inputs:
+      debug_mode:
+        type: boolean
+        description: Debug
+        default: false
+        required: false
+      sample_value:
+        type: string
+        description: Cualquier valor
+        default: ""
+        required: false   
 
 jobs:
 
@@ -12,3 +29,17 @@ jobs:
     - name: Fist Step
 
       run: echo "Hello World"
+    - name: Second Step
+      run: echo "Hello World Again"
+  # This job will run after the first one
+  bye-world:
+
+    runs-on: ubuntu-latest
+    needs: hello-world
+    steps:
+
+    - name: Fist Step
+
+      run: echo "Bye World"
+    - name: Second Step
+      run: echo "Bye World Again"  
